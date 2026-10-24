@@ -19,6 +19,8 @@ Teknologi yang digunakan dalam proyek ini meliputi bahasa pemrograman, framework
 ## Screenshot Aplikasi
 
 ![1](gambar1.png)
+![2](gambar2.png)
+![3](gambar3.png)
 ## Persyaratan
 
 - Node.js sesuai versi yang dibutuhkan proyek.
