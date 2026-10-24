@@ -16,7 +16,9 @@ Aplikasi Sistem Toko Online merupakan aplikasi berbasis web yang dikembangkan un
 ## Teknologi yang Digunakan
 
 Teknologi yang digunakan dalam proyek ini meliputi bahasa pemrograman, framework, database, dan layanan deployment yang tercantum dalam konfigurasi proyek.
+## Screenshot Aplikasi
 
+![1](halaman-utama.png)
 ## Persyaratan
 
 - Node.js sesuai versi yang dibutuhkan proyek.
