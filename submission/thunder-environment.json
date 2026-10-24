@@ -1,0 +1,39 @@
+{
+  "_id": "env-toko-online",
+  "name": "Toko Online",
+  "default": true,
+  "global": false,
+  "sortNum": 1,
+  "created": "2026-10-24T13:42:51.212Z",
+  "modified": "2026-10-24T13:42:51.212Z",
+  "data": [
+    {
+      "name": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "name": "rnd",
+      "value": "uji1"
+    },
+    {
+      "name": "userId",
+      "value": ""
+    },
+    {
+      "name": "categoryId",
+      "value": ""
+    },
+    {
+      "name": "productId",
+      "value": ""
+    },
+    {
+      "name": "orderId",
+      "value": ""
+    },
+    {
+      "name": "reviewId",
+      "value": ""
+    }
+  ]
+}

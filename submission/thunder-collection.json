@@ -1,0 +1,2057 @@
+{
+  "clientName": "Thunder Client",
+  "collectionName": "Toko Online API",
+  "collectionId": "toko-online-uji",
+  "dateExported": "2026-10-24T13:42:51.212Z",
+  "version": "1.2",
+  "folders": [],
+  "requests": [
+    {
+      "_id": "req-001",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "01 GET Health check",
+      "url": "{{baseUrl}}/",
+      "method": "GET",
+      "sortNum": 10000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-002",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "02 GET Endpoint tidak ada",
+      "url": "{{baseUrl}}/tidak-ada",
+      "method": "GET",
+      "sortNum": 20000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "_id": "req-003",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "03 POST JSON tidak valid",
+      "url": "{{baseUrl}}/auth/register",
+      "method": "POST",
+      "sortNum": 30000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{rusak",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-004",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "04 POST Register user baru",
+      "url": "{{baseUrl}}/auth/register",
+      "method": "POST",
+      "sortNum": 40000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"username\": \"tester_{{rnd}}\",\n  \"email\": \"tester_{{rnd}}@example.com\",\n  \"password\": \"Passw0rd123\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "json.data.id",
+          "action": "setto",
+          "value": "{{userId}}"
+        }
+      ]
+    },
+    {
+      "_id": "req-005",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "05 POST Register duplikat",
+      "url": "{{baseUrl}}/auth/register",
+      "method": "POST",
+      "sortNum": 50000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"username\": \"tester_{{rnd}}\",\n  \"email\": \"tester_{{rnd}}@example.com\",\n  \"password\": \"Passw0rd123\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "409"
+        }
+      ]
+    },
+    {
+      "_id": "req-006",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "06 POST Register input tidak valid",
+      "url": "{{baseUrl}}/auth/register",
+      "method": "POST",
+      "sortNum": 60000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"username\": \"a\",\n  \"email\": \"bukan-email\",\n  \"password\": \"123\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-007",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "07 POST Login berhasil",
+      "url": "{{baseUrl}}/auth/login",
+      "method": "POST",
+      "sortNum": 70000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"tester_{{rnd}}@example.com\",\n  \"password\": \"Passw0rd123\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-008",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "08 POST Login password salah",
+      "url": "{{baseUrl}}/auth/login",
+      "method": "POST",
+      "sortNum": 80000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"tester_{{rnd}}@example.com\",\n  \"password\": \"SalahBanget1\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "401"
+        }
+      ]
+    },
+    {
+      "_id": "req-009",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "09 GET Daftar user",
+      "url": "{{baseUrl}}/users",
+      "method": "GET",
+      "sortNum": 90000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-010",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "10 GET Detail user",
+      "url": "{{baseUrl}}/users/{{userId}}",
+      "method": "GET",
+      "sortNum": 100000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-011",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "11 GET User tidak ditemukan",
+      "url": "{{baseUrl}}/users/999999",
+      "method": "GET",
+      "sortNum": 110000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "_id": "req-012",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "12 GET ID bukan angka",
+      "url": "{{baseUrl}}/users/abc",
+      "method": "GET",
+      "sortNum": 120000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-013",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "13 PUT Ganti data user",
+      "url": "{{baseUrl}}/users/{{userId}}",
+      "method": "PUT",
+      "sortNum": 130000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"username\": \"tester_{{rnd}}\",\n  \"email\": \"tester_{{rnd}}@example.com\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-014",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "14 PUT PUT tanpa email",
+      "url": "{{baseUrl}}/users/{{userId}}",
+      "method": "PUT",
+      "sortNum": 140000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"username\": \"tester_{{rnd}}\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-015",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "15 PATCH Ubah password",
+      "url": "{{baseUrl}}/users/{{userId}}",
+      "method": "PATCH",
+      "sortNum": 150000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"password\": \"NewPassw0rd9\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-016",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "16 PATCH PATCH kosong",
+      "url": "{{baseUrl}}/users/{{userId}}",
+      "method": "PATCH",
+      "sortNum": 160000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-017",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "17 PUT Buat profil",
+      "url": "{{baseUrl}}/users/{{userId}}/profile",
+      "method": "PUT",
+      "sortNum": 170000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"full_name\": \"Tester Uji\",\n  \"city\": \"Kebumen\",\n  \"birth_date\": \"2000-01-31\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        }
+      ]
+    },
+    {
+      "_id": "req-018",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "18 PUT Ganti profil",
+      "url": "{{baseUrl}}/users/{{userId}}/profile",
+      "method": "PUT",
+      "sortNum": 180000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"full_name\": \"Tester Uji Baru\",\n  \"city\": \"Kebumen\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-019",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "19 PUT Profil tanpa full_name",
+      "url": "{{baseUrl}}/users/{{userId}}/profile",
+      "method": "PUT",
+      "sortNum": 190000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"city\": \"Kebumen\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-020",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "20 PUT Profil user tidak ada",
+      "url": "{{baseUrl}}/users/999999/profile",
+      "method": "PUT",
+      "sortNum": 200000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"full_name\": \"X\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "_id": "req-021",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "21 GET Lihat profil",
+      "url": "{{baseUrl}}/users/{{userId}}/profile",
+      "method": "GET",
+      "sortNum": 210000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-022",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "22 GET Profil tidak ditemukan",
+      "url": "{{baseUrl}}/users/999999/profile",
+      "method": "GET",
+      "sortNum": 220000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "_id": "req-023",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "23 PATCH Ubah sebagian profil",
+      "url": "{{baseUrl}}/users/{{userId}}/profile",
+      "method": "PATCH",
+      "sortNum": 230000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"phone\": \"081100001111\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-024",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "24 POST Tambah kategori",
+      "url": "{{baseUrl}}/categories",
+      "method": "POST",
+      "sortNum": 240000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"Kategori Uji {{rnd}}\",\n  \"description\": \"Dibuat oleh pengujian otomatis\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "json.data.id",
+          "action": "setto",
+          "value": "{{categoryId}}"
+        }
+      ]
+    },
+    {
+      "_id": "req-025",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "25 POST Kategori duplikat",
+      "url": "{{baseUrl}}/categories",
+      "method": "POST",
+      "sortNum": 250000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"Kategori Uji {{rnd}}\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "409"
+        }
+      ]
+    },
+    {
+      "_id": "req-026",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "26 POST Kategori tanpa nama",
+      "url": "{{baseUrl}}/categories",
+      "method": "POST",
+      "sortNum": 260000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-027",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "27 GET Daftar kategori",
+      "url": "{{baseUrl}}/categories",
+      "method": "GET",
+      "sortNum": 270000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-028",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "28 GET Detail kategori",
+      "url": "{{baseUrl}}/categories/{{categoryId}}",
+      "method": "GET",
+      "sortNum": 280000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-029",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "29 GET Kategori tidak ditemukan",
+      "url": "{{baseUrl}}/categories/999999",
+      "method": "GET",
+      "sortNum": 290000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "_id": "req-030",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "30 PUT Ganti kategori",
+      "url": "{{baseUrl}}/categories/{{categoryId}}",
+      "method": "PUT",
+      "sortNum": 300000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"Kategori Uji {{rnd}}\",\n  \"description\": \"Diganti\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-031",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "31 PATCH Ubah sebagian kategori",
+      "url": "{{baseUrl}}/categories/{{categoryId}}",
+      "method": "PATCH",
+      "sortNum": 310000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"description\": \"Deskripsi baru\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-032",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "32 POST Tambah produk",
+      "url": "{{baseUrl}}/products",
+      "method": "POST",
+      "sortNum": 320000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"category_id\": {{categoryId}},\n  \"name\": \"Produk Uji {{rnd}}\",\n  \"description\": \"Barang uji\",\n  \"price\": 150000,\n  \"stock\": 10\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "json.data.id",
+          "action": "setto",
+          "value": "{{productId}}"
+        }
+      ]
+    },
+    {
+      "_id": "req-033",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "33 POST Harga negatif",
+      "url": "{{baseUrl}}/products",
+      "method": "POST",
+      "sortNum": 330000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"category_id\": {{categoryId}},\n  \"name\": \"X\",\n  \"price\": -1\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-034",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "34 POST Kategori tidak ada",
+      "url": "{{baseUrl}}/products",
+      "method": "POST",
+      "sortNum": 340000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"category_id\": 999999,\n  \"name\": \"X\",\n  \"price\": 1000\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-035",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "35 GET Daftar produk",
+      "url": "{{baseUrl}}/products",
+      "method": "GET",
+      "sortNum": 350000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-036",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "36 GET Cari produk (q)",
+      "url": "{{baseUrl}}/products?q=Headphone",
+      "method": "GET",
+      "sortNum": 360000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-037",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "37 GET Filter kategori",
+      "url": "{{baseUrl}}/products?category_id=1",
+      "method": "GET",
+      "sortNum": 370000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-038",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "38 GET Detail produk",
+      "url": "{{baseUrl}}/products/{{productId}}",
+      "method": "GET",
+      "sortNum": 380000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-039",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "39 GET Produk tidak ditemukan",
+      "url": "{{baseUrl}}/products/999999",
+      "method": "GET",
+      "sortNum": 390000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "_id": "req-040",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "40 PUT Ganti produk",
+      "url": "{{baseUrl}}/products/{{productId}}",
+      "method": "PUT",
+      "sortNum": 400000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"category_id\": {{categoryId}},\n  \"name\": \"Produk Uji {{rnd}}\",\n  \"description\": \"Barang uji\",\n  \"price\": 160000,\n  \"stock\": 10\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-041",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "41 PATCH Ubah stok",
+      "url": "{{baseUrl}}/products/{{productId}}",
+      "method": "PATCH",
+      "sortNum": 410000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"stock\": 20\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-042",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "42 POST Buat order",
+      "url": "{{baseUrl}}/orders",
+      "method": "POST",
+      "sortNum": 420000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"user_id\": {{userId}},\n  \"shipping_address\": \"Jl. Uji No. 1, Kebumen\",\n  \"items\": [\n    {\n      \"product_id\": {{productId}},\n      \"quantity\": 2\n    }\n  ]\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "json.data.id",
+          "action": "setto",
+          "value": "{{orderId}}"
+        }
+      ]
+    },
+    {
+      "_id": "req-043",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "43 GET Stok berkurang setelah order",
+      "url": "{{baseUrl}}/products/{{productId}}",
+      "method": "GET",
+      "sortNum": 430000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-044",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "44 POST Stok tidak cukup",
+      "url": "{{baseUrl}}/orders",
+      "method": "POST",
+      "sortNum": 440000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"user_id\": {{userId}},\n  \"shipping_address\": \"x\",\n  \"items\": [\n    {\n      \"product_id\": {{productId}},\n      \"quantity\": 999\n    }\n  ]\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-045",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "45 POST Items kosong",
+      "url": "{{baseUrl}}/orders",
+      "method": "POST",
+      "sortNum": 450000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"user_id\": {{userId}},\n  \"shipping_address\": \"x\",\n  \"items\": []\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-046",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "46 POST User tidak ada",
+      "url": "{{baseUrl}}/orders",
+      "method": "POST",
+      "sortNum": 460000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"user_id\": 999999,\n  \"shipping_address\": \"x\",\n  \"items\": [\n    {\n      \"product_id\": {{productId}},\n      \"quantity\": 1\n    }\n  ]\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-047",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "47 GET Daftar order",
+      "url": "{{baseUrl}}/orders",
+      "method": "GET",
+      "sortNum": 470000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-048",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "48 GET Filter order per user",
+      "url": "{{baseUrl}}/orders?user_id={{userId}}",
+      "method": "GET",
+      "sortNum": 480000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-049",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "49 GET Detail order",
+      "url": "{{baseUrl}}/orders/{{orderId}}",
+      "method": "GET",
+      "sortNum": 490000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-050",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "50 GET Order tidak ditemukan",
+      "url": "{{baseUrl}}/orders/999999",
+      "method": "GET",
+      "sortNum": 500000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "_id": "req-051",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "51 PATCH Ubah alamat order",
+      "url": "{{baseUrl}}/orders/{{orderId}}",
+      "method": "PATCH",
+      "sortNum": 510000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"shipping_address\": \"Jl. Baru No. 2, Kebumen\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-052",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "52 PATCH Bayar order",
+      "url": "{{baseUrl}}/orders/{{orderId}}/status",
+      "method": "PATCH",
+      "sortNum": 520000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"status\": \"paid\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-053",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "53 PATCH Transisi status tidak valid",
+      "url": "{{baseUrl}}/orders/{{orderId}}/status",
+      "method": "PATCH",
+      "sortNum": 530000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"status\": \"pending\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-054",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "54 PATCH Nilai status tidak valid",
+      "url": "{{baseUrl}}/orders/{{orderId}}/status",
+      "method": "PATCH",
+      "sortNum": 540000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"status\": \"terbang\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-055",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "55 PATCH Ubah alamat setelah paid",
+      "url": "{{baseUrl}}/orders/{{orderId}}",
+      "method": "PATCH",
+      "sortNum": 550000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"shipping_address\": \"x\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-056",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "56 POST Tambah review",
+      "url": "{{baseUrl}}/reviews",
+      "method": "POST",
+      "sortNum": 560000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"user_id\": {{userId}},\n  \"product_id\": {{productId}},\n  \"rating\": 5,\n  \"comment\": \"Bagus\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "json.data.id",
+          "action": "setto",
+          "value": "{{reviewId}}"
+        }
+      ]
+    },
+    {
+      "_id": "req-057",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "57 POST Review duplikat",
+      "url": "{{baseUrl}}/reviews",
+      "method": "POST",
+      "sortNum": 570000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"user_id\": {{userId}},\n  \"product_id\": {{productId}},\n  \"rating\": 4\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "409"
+        }
+      ]
+    },
+    {
+      "_id": "req-058",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "58 POST Rating di luar 1-5",
+      "url": "{{baseUrl}}/reviews",
+      "method": "POST",
+      "sortNum": 580000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"user_id\": {{userId}},\n  \"product_id\": {{productId}},\n  \"rating\": 6\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-059",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "59 GET Daftar review",
+      "url": "{{baseUrl}}/reviews?product_id={{productId}}",
+      "method": "GET",
+      "sortNum": 590000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-060",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "60 GET Detail review",
+      "url": "{{baseUrl}}/reviews/{{reviewId}}",
+      "method": "GET",
+      "sortNum": 600000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-061",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "61 PUT Ganti review",
+      "url": "{{baseUrl}}/reviews/{{reviewId}}",
+      "method": "PUT",
+      "sortNum": 610000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"user_id\": {{userId}},\n  \"product_id\": {{productId}},\n  \"rating\": 4,\n  \"comment\": \"Oke\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-062",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "62 PATCH Ubah rating",
+      "url": "{{baseUrl}}/reviews/{{reviewId}}",
+      "method": "PATCH",
+      "sortNum": 620000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"rating\": 3\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-063",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "63 GET avg_rating terhitung",
+      "url": "{{baseUrl}}/products/{{productId}}",
+      "method": "GET",
+      "sortNum": 630000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-064",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "64 DELETE Hapus review",
+      "url": "{{baseUrl}}/reviews/{{reviewId}}",
+      "method": "DELETE",
+      "sortNum": 640000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-065",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "65 DELETE Hapus review lagi",
+      "url": "{{baseUrl}}/reviews/{{reviewId}}",
+      "method": "DELETE",
+      "sortNum": 650000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "_id": "req-066",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "66 DELETE Kategori masih dipakai produk",
+      "url": "{{baseUrl}}/categories/{{categoryId}}",
+      "method": "DELETE",
+      "sortNum": 660000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "409"
+        }
+      ]
+    },
+    {
+      "_id": "req-067",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "67 DELETE User masih punya order",
+      "url": "{{baseUrl}}/users/{{userId}}",
+      "method": "DELETE",
+      "sortNum": 670000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "409"
+        }
+      ]
+    },
+    {
+      "_id": "req-068",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "68 DELETE Hapus order belum cancelled",
+      "url": "{{baseUrl}}/orders/{{orderId}}",
+      "method": "DELETE",
+      "sortNum": 680000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "req-069",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "69 PATCH Batalkan order (stok kembali)",
+      "url": "{{baseUrl}}/orders/{{orderId}}/status",
+      "method": "PATCH",
+      "sortNum": 690000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"status\": \"cancelled\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-070",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "70 GET Stok kembali setelah cancel",
+      "url": "{{baseUrl}}/products/{{productId}}",
+      "method": "GET",
+      "sortNum": 700000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-071",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "71 DELETE Hapus order",
+      "url": "{{baseUrl}}/orders/{{orderId}}",
+      "method": "DELETE",
+      "sortNum": 710000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-072",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "72 DELETE Hapus produk",
+      "url": "{{baseUrl}}/products/{{productId}}",
+      "method": "DELETE",
+      "sortNum": 720000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-073",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "73 DELETE Hapus produk lagi",
+      "url": "{{baseUrl}}/products/{{productId}}",
+      "method": "DELETE",
+      "sortNum": 730000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "_id": "req-074",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "74 DELETE Hapus kategori",
+      "url": "{{baseUrl}}/categories/{{categoryId}}",
+      "method": "DELETE",
+      "sortNum": 740000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-075",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "75 DELETE Hapus profil",
+      "url": "{{baseUrl}}/users/{{userId}}/profile",
+      "method": "DELETE",
+      "sortNum": 750000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "req-076",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "76 DELETE Hapus profil lagi",
+      "url": "{{baseUrl}}/users/{{userId}}/profile",
+      "method": "DELETE",
+      "sortNum": 760000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "_id": "req-077",
+      "colId": "toko-online-uji",
+      "containerId": "",
+      "name": "77 DELETE Hapus user",
+      "url": "{{baseUrl}}/users/{{userId}}",
+      "method": "DELETE",
+      "sortNum": 770000,
+      "created": "2026-10-24T13:42:51.212Z",
+      "modified": "2026-10-24T13:42:51.212Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    }
+  ]
+}
