@@ -48,7 +48,11 @@ npm run dev
 ## Dokumentasi API
 
 Daftar endpoint API, metode HTTP, parameter, autentikasi, dan contoh respons harus disesuaikan dengan implementasi aktual proyek.
+## Screenshot Aplikasi
 
+![1](gambar1.png)
+![2](gambar2.png)
+![3](gambar3.png)
 ## Database dan ERD
 
 Skema database dan Entity Relationship Diagram (ERD) didokumentasikan berdasarkan model serta relasi database yang digunakan dalam proyek.
